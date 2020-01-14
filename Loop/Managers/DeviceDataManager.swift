@@ -25,7 +25,7 @@ final class DeviceDataManager {
     /// Manages authentication for remote services
     let remoteDataManager = RemoteDataManager()
 
-    private var nightscoutDataManager: NightscoutDataManager!
+    public var nightscoutDataManager: NightscoutDataManager!
 
     private(set) var testingScenariosManager: TestingScenariosManager?
 
@@ -162,7 +162,8 @@ final class DeviceDataManager {
             log.default("CGMManager:\(type(of: manager)) did update with \(values.count) values")
                         
             loopManager.addGlucose(values) { result in
-                if manager.shouldSyncToRemoteService {
+                //if manager.shouldSyncToRemoteService {
+                if self.nightscoutDataManager.allowLoopToUpdateBG {
                     switch result {
                     case .success(let values):
                         self.nightscoutDataManager.uploadGlucose(values, sensorState: manager.sensorState, fromDevice: manager.device)

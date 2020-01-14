@@ -30,7 +30,10 @@ final class NightscoutDataManager {
     
     // Override history query anchor
     var overrideHistoryQueryAnchor: TemporaryScheduleOverrideHistory.QueryAnchor?
-
+    
+    // allow loop to update bg to nightscout
+    public var allowLoopToUpdateBG = false
+    
     init(deviceDataManager: DeviceDataManager) {
         self.deviceManager = deviceDataManager
 

@@ -47,6 +47,7 @@ final class SettingsTableViewController: UITableViewController {
         case cgm
         case configuration
         case services
+        case servicesUpdate
         case testingPumpDataDeletion
         case testingCGMDataDeletion
     }
@@ -79,7 +80,11 @@ final class SettingsTableViewController: UITableViewController {
         case loggly
         case amplitude
     }
-
+    
+    fileprivate enum ServicesUpdateRow: Int, CaseCountable {
+        case nightscoutUpdate = 0
+    }
+    
     fileprivate lazy var valueNumberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
 
@@ -145,6 +150,8 @@ final class SettingsTableViewController: UITableViewController {
             return ConfigurationRow.count
         case .services:
             return ServiceRow.count
+        case .servicesUpdate:
+            return 1
         case .testingPumpDataDeletion, .testingCGMDataDeletion:
             return 1
         }
@@ -308,6 +315,21 @@ final class SettingsTableViewController: UITableViewController {
 
             configCell.accessoryType = .disclosureIndicator
             return configCell
+     
+        case .servicesUpdate:
+            switch ServicesUpdateRow(rawValue: indexPath.row)! {
+            case .nightscoutUpdate:
+                let switchCell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.className, for: indexPath) as! SwitchTableViewCell
+
+                    switchCell.selectionStyle = .none
+                    switchCell.switch?.isOn = dataManager.nightscoutDataManager.allowLoopToUpdateBG
+                    
+                    switchCell.textLabel?.text = NSLocalizedString("Upload BG to Nightscout", comment: "The title text for the nightscout update enabled switch cell")
+
+                    switchCell.switch?.addTarget(self, action: #selector(nightscoutServiceAllowLoopToUpdateBGChanged(_:)), for: .valueChanged)
+                    
+                    return switchCell
+                }
         case .testingPumpDataDeletion:
             let cell = tableView.dequeueReusableCell(withIdentifier: TextButtonTableViewCell.className, for: indexPath) as! TextButtonTableViewCell
             cell.textLabel?.text = "Delete Pump Data"
@@ -337,6 +359,8 @@ final class SettingsTableViewController: UITableViewController {
             return NSLocalizedString("Configuration", comment: "The title of the configuration section in settings")
         case .services:
             return NSLocalizedString("Services", comment: "The title of the services section in settings")
+        case .servicesUpdate:
+            return NSLocalizedString("Services Upload", comment: "The title of the services update section in settings")
         case .testingPumpDataDeletion, .testingCGMDataDeletion:
             return nil
         }
@@ -582,6 +606,11 @@ final class SettingsTableViewController: UITableViewController {
 
                 show(vc, sender: sender)
             }
+        case .servicesUpdate:
+            switch ServicesUpdateRow(rawValue: indexPath.row)! {
+            case .nightscoutUpdate:
+                break
+            }
         case .testingPumpDataDeletion:
             let confirmVC = UIAlertController(pumpDataDeletionHandler: { self.dataManager.deleteTestingPumpData() })
             present(confirmVC, animated: true) {
@@ -597,6 +626,10 @@ final class SettingsTableViewController: UITableViewController {
 
     @objc private func dosingEnabledChanged(_ sender: UISwitch) {
         dataManager.loopManager.settings.dosingEnabled = sender.isOn
+    }
+    
+    @objc private func nightscoutServiceAllowLoopToUpdateBGChanged(_ sender: UISwitch) {
+        dataManager.nightscoutDataManager.allowLoopToUpdateBG = sender.isOn
     }
 }
 
