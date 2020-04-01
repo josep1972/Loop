@@ -23,7 +23,7 @@ final class LoopDataManager {
     static let LoopUpdateContextKey = "com.loudnate.Loop.LoopDataManager.LoopUpdateContext"
     
     // OTP
-    var otpManager: OTPManager
+    let otpManager: OTPManager
     
     let carbStore: CarbStore
 
