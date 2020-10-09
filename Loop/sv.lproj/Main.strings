@@ -11,10 +11,10 @@
 "5TX-kX-nBo.text" = "Pump-ID";
 
 /* Class = "UITextField"; accessibilityLabel = "Bolus Amount"; ObjectID = "7LT-50-ZzK"; */
-"7LT-50-ZzK.accessibilityLabel" = "Bolusvärde";
+"7LT-50-ZzK.accessibilityLabel" = "Bolusmängd";
 
 /* Class = "UITextField"; placeholder = "0.0"; ObjectID = "7LT-50-ZzK"; */
-"7LT-50-ZzK.placeholder" = "0.0";
+"7LT-50-ZzK.placeholder" = "0,0";
 
 /* Class = "UILabel"; text = "Predicted"; ObjectID = "87H-N1-0vJ"; */
 "87H-N1-0vJ.text" = "Predikterat";
@@ -60,9 +60,6 @@
 
 /* Class = "UILabel"; text = "Observed"; ObjectID = "EAn-Ja-S1d"; */
 "EAn-Ja-S1d.text" = "Observerad";
-
-/* Class = "UILabel"; text = "Active Carbohydrates: 40g"; ObjectID = "hHZ-uY-aKw"; */
-"hHZ-uY-aKw.text" = "Aktiva kolhydrater: 40g";
 
 /* Class = "UITableViewController"; title = "Carbohydrate Effects"; ObjectID = "hZZ-2S-lrd"; */
 "hZZ-2S-lrd.title" = "Kolhydrateffekter";
@@ -118,17 +115,11 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "ufi-Kj-33k"; */
 "ufi-Kj-33k.text" = "Titel";
 
-/* Class = "UILabel"; text = "Active Insulin: 1.5U"; ObjectID = "viU-7a-kbI"; */
-"viU-7a-kbI.text" = "Aktivt insulin: 1.5E";
-
 /* Class = "UINavigationItem"; title = "Carbohydrates"; ObjectID = "Vpi-5b-bY5"; */
 "Vpi-5b-bY5.title" = "Kolhydrater";
 
 /* Class = "UITextField"; text = "4 hour"; ObjectID = "Wk3-xv-IM5"; */
 "Wk3-xv-IM5.text" = "4 timmar";
-
-/* Class = "UIButton"; normalTitle = "Deliver"; ObjectID = "Ya0-9b-ZAS"; */
-"Ya0-9b-ZAS.normalTitle" = "Ge bolus";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "yn7-2M-jZz"; */
 "yn7-2M-jZz.text" = "0";

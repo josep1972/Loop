@@ -21,6 +21,7 @@ final class WatchContext: RawRepresentable {
     var glucose: HKQuantity?
     var glucoseTrendRawValue: Int?
     var glucoseDate: Date?
+    var glucoseSyncIdentifier: String?
 
     var predictedGlucose: WatchPredictedGlucose?
     var eventualGlucose: HKQuantity? {
@@ -31,6 +32,7 @@ final class WatchContext: RawRepresentable {
     var lastNetTempBasalDose: Double?
     var lastNetTempBasalDate: Date?
     var recommendedBolusDose: Double?
+    var doNotOpenBolusScreenWithMicroboluses: Bool?
 
     var cob: Double?
     var iob: Double?
@@ -58,6 +60,7 @@ final class WatchContext: RawRepresentable {
 
         glucoseTrendRawValue = rawValue["gt"] as? Int
         glucoseDate = rawValue["gd"] as? Date
+        glucoseSyncIdentifier = rawValue["gs"] as? String
         iob = rawValue["iob"] as? Double
         reservoir = rawValue["r"] as? Double
         reservoirPercentage = rawValue["rp"] as? Double
@@ -68,6 +71,7 @@ final class WatchContext: RawRepresentable {
         lastNetTempBasalDate = rawValue["bad"] as? Date
         recommendedBolusDose = rawValue["rbo"] as? Double
         cob = rawValue["cob"] as? Double
+        doNotOpenBolusScreenWithMicroboluses = rawValue["mb"] as? Bool
 
         cgmManagerState = rawValue["cgmManagerState"] as? CGMManager.RawStateValue
 
@@ -95,11 +99,13 @@ final class WatchContext: RawRepresentable {
 
         raw["gt"] = glucoseTrendRawValue
         raw["gd"] = glucoseDate
+        raw["gs"] = glucoseSyncIdentifier
         raw["iob"] = iob
         raw["ld"] = loopLastRunDate
         raw["r"] = reservoir
         raw["rbo"] = recommendedBolusDose
         raw["rp"] = reservoirPercentage
+        raw["mb"] = doNotOpenBolusScreenWithMicroboluses
 
         raw["pg"] = predictedGlucose?.rawValue
 
@@ -115,5 +121,14 @@ extension WatchContext {
         } else {
             return true
         }
+    }
+}
+
+extension WatchContext {
+    var newGlucoseSample: NewGlucoseSample? {
+        if let quantity = glucose, let date = glucoseDate, let syncIdentifier = glucoseSyncIdentifier {
+            return NewGlucoseSample(date: date, quantity: quantity, isDisplayOnly: false, syncIdentifier: syncIdentifier, syncVersion: 0)
+        }
+        return nil
     }
 }

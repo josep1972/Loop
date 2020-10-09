@@ -250,7 +250,7 @@
 "Invalid data: %1$@" = "Неверные данные: %1$@";
 
 /* The title text for the issue report cell */
-"Issue Report" = "Сообщить об ошибе";
+"Issue Report" = "Сообщить об ошибке";
 
 /* Glucose HUD accessibility hint */
 "Launches CGM app" = "Запускает приложение  непрерывного мониторинга CGM";
@@ -265,7 +265,7 @@
 "Loop Failure" = "Ошибка в работе цикла/контура";
 
 /* The notification alert describing a long-lasting loop failure. The substitution parameter is the time interval since the last loop */
-"Loop has not completed successfully in %@" = "Ну удалось успешно  замкнуть цикл/контур в %@";
+"Loop has not completed successfully in %@" = "Не удалось успешно  замкнуть цикл/контур в %@";
 
 /* The error message for missing data. (1: missing data details) */
 "Missing data: %1$@" = "Пропущены данные: %1$@";
@@ -316,7 +316,7 @@
 "Pump Suspended" = "Помпа приостановлена";
 
 /* Title of insulin model preset */
-"Rapid-Acting – Adults" = "Боыстродействующий - взрослые";
+"Rapid-Acting – Adults" = "Быстродействующий - взрослые";
 
 /* Title of insulin model preset */
 "Rapid-Acting – Children" = "Быстродействующий - дети";
@@ -385,8 +385,80 @@
 "Walsh" = "Walsh";
 
 /* Explanation of suspend threshold */
-"When current or forecasted glucose is below the suspend threshold, Loop will not recommend a bolus, and will always recommend a temporary basal rate of 0 units per hour." = "Если текущая или предсказываемая гликемия ниже порога приостановки помпы, алгоритм цикла ипж не рекомендует болюс и всегда рекомендует временный базал 0 ед/час";
+"When current or forecasted glucose is below the suspend threshold, Loop will not recommend a bolus, and will always recommend a temporary basal rate of 0 units per hour." = "Если текущая или предсказываемая гликемия ниже порога приостановки помпы, алгоритм цикла ИПЖ не рекомендует болюс и всегда рекомендует временный базал 0 ед/час";
 
 /* The label of the workout mode toggle button */
 "Workout Targets" = "Целевые значения при физической нагрузке";
 
+
+// FreeAPS strings
+
+"Microboluses" = "Микроболюсы";
+
+"Caution! Microboluses have potential to reduce the safety effects of other mitigations like max temp basal rate. Please be careful!\nThe actual size of a microbolus is always limited to the partial application of recommended bolus." = "Внимание! Использование микроболюсов может понизить уровень безопасности, достигаемый другими параметрами, например, ограничением максимального уровня базальной скорости. Пожалуйста, будьте осторожны! Фактический размер микроболюса ограничивается настройкой частичного введения рекомендуемого болюса.";
+
+"Enable With Carbs" = "Разрешены с активными углеводами";
+
+"Enable Without Carbs" = "Разрешены без активных углеводов";
+
+"Partial Bolus Application" = "Процент введение рекомендуемого болюса";
+
+"What part of the recommended bolus will be applied automatically." = "Часть рекомендуемого болюса, вводимая автоматически";
+
+"Basal Rate Multiplier" = "Коэффициент базальной скорости";
+
+"Max basal limit" = "Максимальная базальная скорость";
+
+"Limits the maximum basal rate to a multiple of the scheduled basal rate in loop. The value cannot exceed your maximum basal rate setting. This setting is ignored if microboluses are disabled." = "Ограничивает максимальную базальную скорость текущей базальной скоростью, уноженной на коэфициент. Полученное значение не будет превышать выставленную максимальную базальную скорость. Настройка игнорируется, если микроболюсы отключены.";
+
+"Temporary overrides" = "Временные цели";
+
+"Disable MB by enabling temporary override" = "Выключить микроболюсы при использовании временной цели";
+
+"If the override's target range starts at the given value or more" = "Если целевой диапазон равен или выше заданного значения";
+
+"Other Options" = "Другие опции";
+
+"Open bolus screen after carbs on watch" = "Открывать на часах экран введения болюса после введения углеводов";
+
+"Minimum Bolus Size" = "Минимальный размер болюса";
+
+"This is the minimum microbolus size in units that will be delivered. Only if the microbolus calculated is equal to or greater than this number of units will a bolus be delivered." = "Минимальный размер вводимого микроболюса (в единицах). Микроболюс будет введен только в том случае, если его рассчитанная величина будет равна или больше указанного значения минимального болюса.";
+
+"Disabled" = "Отключены";
+
+"Always" = "Всегда";
+
+"With Carbs" = "С углеводами";
+
+"Without Carbs" = "Без углеводов";
+
+"Export Settings" = "Сохранить настройки";
+
+"Import Settings" = "Загрузить настройки";
+
+"Manual Temp Basal" = "Ручная ВБС";
+
+"Basal rate (U/h)" = "Базальная скорость (Ед/ч)";
+
+"Duration" = "Длительность";
+
+"%.0f h %02.0f min" = "%.0f ч %02.0f мин";
+
+"Cancel Temp Basal" = "Отменить ВБС";
+
+"Set" = "Установить";
+
+"Safety" = "Безопасность";
+
+"Allow MBs when the sensor value is invalid" = "Разрешить микроболюсы, когда значение сенсора невалидно";
+
+"Sometimes you may see an exclamation mark next to the glucose value. In such cases microboluses will not be applied. Turn this setting on if you want to ignore warnings." = "Иногда вы можете видеть восклицательный знак рядом со значением глюкозы. В таких случаях микроболюсы подаваться не будут. Включите эту настройку, если хотите игнорировать предупреждения.";
+
+"Other FreeAPS settings" = "Другие настройки FreeAPS";
+
+"Show required carbs on the app badge" = "Показывать необходимые углеводы на иконке приложения";
+
+"Allow MBs when glucose is below target range" = "Разрешить микроболюсы, когда глюкоза ниже целевого диапазона";
+
+"Retrospective Correction interval" = "Интервал ретроспективной коррекции";

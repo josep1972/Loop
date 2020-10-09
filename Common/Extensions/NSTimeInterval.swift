@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension TimeInterval {
+public extension TimeInterval {
     static func seconds(_ seconds: Double) -> TimeInterval {
         return seconds
     }

@@ -85,7 +85,8 @@ enum LogglyAPIEndpoint: String {
 
     func url(token: String, tags: [String]) -> URL {
         let tags = tags.count > 0 ? tags : ["http"]
-        return URL(string: "\(base)\(token)/tag/\(tags.joined(separator: ","))/")!
+        let encodedToken = token.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? "invalid_token"
+        return URL(string: "\(base)\(encodedToken)/tag/\(tags.joined(separator: ","))/")!
     }
 }
 

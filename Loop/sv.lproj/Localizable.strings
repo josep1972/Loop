@@ -1,6 +1,9 @@
 /* The string format appended to active insulin that describes pending insulin. (1: pending insulin) */
 " (pending: %@)" = " (återstår: %@)";
 
+/* (No Comment) */
+"%.0f h %02.0f min" = "%.0f h %02.0f min";
+
 /* The format for an active override preset. (1: preset symbol)(2: preset name) */
 "%@ %@" = "%1$@ %2$@";
 
@@ -71,7 +74,7 @@
    Title text for button to set up a CGM */
 "Add CGM" = "Lägg till CGM";
 
-/* The label of the carb entry button */
+/* The label of the meal button */
 "Add Meal" = "Lägg till måltid";
 
 /* Action sheet title selecting Pump
@@ -99,6 +102,9 @@
 /* The message displayed during a device authentication prompt for bolus specification */
 "Authenticate to Bolus %@ Units" = "Godkänn bolus på %@ Enheter";
 
+/* (No Comment) */
+"Basal rate (U/h)" = "Basaldos (Е/h)";
+
 /* Details for configuration error when basal rate schedule is missing */
 "Basal Rate Schedule" = "Basaldosschema";
 
@@ -118,6 +124,9 @@
 
 /* The title of the cancel action in an action sheet */
 "Cancel" = "Avbryt";
+
+/* (No Comment) */
+"Cancel Temp Basal" = "Avbryt temporär basal";
 
 /* The title of the cell indicating a bolus is being canceled */
 "Canceling Bolus" = "Avbryter bolus";
@@ -173,7 +182,7 @@
 "Current glucose of %1$@ is below correction range." = "Nuvarande glukosvärde %1$@ är under målvärde.";
 
 /* The title of the cell indicating a generic temporary override is enabled */
-"Custom Override" = "Anpassad override";
+"Custom Override" = "Anpassat undantag";
 
 /* The title of the Loggly customer token credential */
 "Customer Token" = "Inloggningsuppgift";
@@ -184,8 +193,15 @@
 /* Title text for delivery limits */
 "Delivery Limits" = "Maxdoser";
 
+/* (No Comment) */
+"Disabled" = "Av";
+
 /* The action hint of the workout mode toggle button when enabled */
 "Disables" = "Stänger av";
+
+/* (No Comment) */
+"Duration" = "Duration";
+
 
 /* The action hint of the workout mode toggle button when disabled */
 "Enables" = "Sätter på";
@@ -270,6 +286,12 @@
 /* The notification alert describing a long-lasting loop failure. The substitution parameter is the time interval since the last loop */
 "Loop has not completed successfully in %@" = "Loop har inte körts på %@";
 
+/* (No Comment) */
+"Manual Temp Basal" = "Manuell temporär basal";
+
+/* (No Comment) */
+"Max basal limit" = "Max basaldos";
+
 /* The error message for missing data. (1: missing data details) */
 "Missing data: %1$@" = "Saknar data: %1$@";
 
@@ -283,7 +305,7 @@
 "No connected devices, or failure during device connection" = "Ingen ansluten enhet, eller fel vid anslutning";
 
 /* The title text for the override presets */
-"Override Presets" = "Override förinställningar";
+"Override Presets" = "Undantag förinställningar";
 
 /* The label of the pre-meal mode toggle button */
 "Pre-Meal Targets" = "Målvärden före måltid";
@@ -345,6 +367,9 @@
 /* The title of the services section in settings */
 "Services" = "Tjänster";
 
+/* (No Comment) */
+"Set" = "Ställ in";
+
 /* The label of the settings button */
 "Settings" = "Inställningar";
 
@@ -393,3 +418,77 @@
 /* The label of the workout mode toggle button */
 "Workout Targets" = "Målvärden för träning";
 
+/*-----------------------------------------------------------------------------*/
+// FreeAPS strings
+
+"Microboluses" = "Automatiska bolusar";
+
+"Caution! Microboluses have potential to reduce the safety effects of other mitigations like max temp basal rate. Please be careful!\nThe actual size of a microbolus is always limited to the partial application of recommended bolus." = "Tänk på att automatiska bolusar kan påverka andra säkerhetsaspekter, så som maximal basaldos. Var försiktig! Den faktiska mängden automatisk bolus är alltid begränsad till din inställning för partiell tillämpning av rekommenderad bolus.";
+
+"Enable With Carbs" = "Använd med kolhydrater";
+
+"Enable Without Carbs" = "Använd utan kolhydrater";
+
+"Partial Bolus Application" = "Partiell tillämpning av bolus";
+
+"What part of the recommended bolus will be applied automatically." = "Den del av rekommenderad bolus som kommer att ges automatiskt.";
+
+"Basal Rate Multiplier" = "Basaldosmultiplikator";
+
+"Max basal limit" = "Max basaldos";
+
+"Limits the maximum basal rate to a multiple of the scheduled basal rate in loop. The value cannot exceed your maximum basal rate setting. This setting is ignored if microboluses are disabled." = "Bestämmer andel maximal temporär basal som kommer att används till en multipel av den normala basaldosen. Värdet kan inte överskrida din inställda maximala basaldos. Denna inställning används endast när reglaget för automatiska bolusar är på.";
+
+"Temporary overrides" = "Tillfälliga undantag";
+
+"Disable MB by enabling temporary override" = "Stäng av automatisk bolus vid tillfälliga undantag";
+
+"If the override's target range starts at the given value or more" = "Om målvärden börjar på angivet värde eller mer";
+
+"Other Options" = "Andra val";
+
+"Open bolus screen after carbs on watch" = "Öppna bolusfönster efter kolhydrater på din klocka";
+
+"Minimum Bolus Size" = "Minsta bolusmängd";
+
+"Last Event" = "Senaste händelse";
+
+"This is the minimum microbolus size in units that will be delivered. Only if the microbolus calculated is equal to or greater than this number of units will a bolus be delivered." = "Detta är den minsta mängd automatisk bolus som kan ges.";
+
+"Disabled" = "Av";
+
+"Always" = "Alltid";
+
+"With Carbs" = "Med kolhydrater";
+
+"Without Carbs" = "Utan kolhydrater";
+
+"Export Settings" = "Exportera inställningar";
+
+"Import Settings" = "Importera inställningar";
+
+"Manual Temp Basal" = "Manuell temporär basal";
+
+"Basal rate (U/h)" = "Basaldos (Е/h)";
+
+"Duration" = "Duration";
+
+"%.0f h %02.0f min" = "%.0f h %02.0f min";
+
+"Cancel Temp Basal" = "Avbryt temporär basal";
+
+"Set" = "Ställ in";
+
+"Safety" = "Säkerhetsinställningar";
+
+"Allow MBs when the sensor value is invalid" = "Tillåt automatiska bolusar vid 'ogiltiga' sensorvärden";
+
+"Sometimes you may see an exclamation mark next to the glucose value. In such cases microboluses will not be applied. Turn this setting on if you want to ignore warnings." = "Ibland syns ett gult utropstecken efter blodsockervärdet. I dessa fall kommer ingen automatisk bolus att ges. Slå på denna inställning för att ignorera dessa varningar.";
+
+"Other FreeAPS settings" = "Andra FreeAPS-inställningar";
+
+"Show required carbs on the app badge" = "Visa antal kolhydrater som krävs för att hamna i målområde";
+
+"Allow MBs when glucose is below target range" = "Tillåt automatiska bolusar även när blodglukos är under målvärde";
+
+"Retrospective Correction interval" = "Retrospektivt korrigeringsintervall";

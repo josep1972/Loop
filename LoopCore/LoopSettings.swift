@@ -11,6 +11,10 @@ import HealthKit
 public struct LoopSettings: Equatable {
     public var dosingEnabled = false
 
+    public var microbolusSettings = Microbolus.Settings()
+
+    public var freeAPSSettings = FreeAPSSettings()
+
     public let dynamicCarbAbsorptionEnabled = true
 
     public static let defaultCarbAbsorptionTimes: CarbStore.DefaultAbsorptionTimes = (fast: .hours(2), medium: .hours(3), slow: .hours(4))
@@ -34,10 +38,15 @@ public struct LoopSettings: Equatable {
     public let retrospectiveCorrectionEnabled = true
 
     /// The interval over which to aggregate changes in glucose for retrospective correction
-    public let retrospectiveCorrectionGroupingInterval = TimeInterval(minutes: 30)
+    public var retrospectiveCorrectionGroupingInterval: TimeInterval { freeAPSSettings.retrospectiveCorrectionGroupingInterval }
 
-    /// The amount of time since a given date that data should be considered valid
-    public let recencyInterval = TimeInterval(minutes: 15)
+    /// The amount of time since a given date that input data should be considered valid
+    public let inputDataRecencyInterval = TimeInterval(minutes: 15)
+    
+    /// Loop completion aging category limits
+    public let completionFreshLimit = TimeInterval(minutes: 6)
+    public let completionAgingLimit = TimeInterval(minutes: 16)
+    public let completionStaleLimit = TimeInterval(hours: 12)
 
     public let batteryReplacementDetectionThreshold = 0.5
 
@@ -54,7 +63,7 @@ public struct LoopSettings: Equatable {
     public var glucoseUnit: HKUnit? {
         return glucoseTargetRangeSchedule?.unit
     }
-    
+
     // MARK - Push Notifications
     
     public var deviceToken: Data?
@@ -174,6 +183,21 @@ extension LoopSettings {
             scheduleOverride = nil
         }
     }
+
+    public var carbAbsorptionModel: CarbAbsorptionModel {
+        UserDefaults.standard.bool(forKey: "adaptiveRateNonlinear_enabled")
+            ? .adaptiveRateNonlinear
+            : .nonlinear
+    }
+
+    public func currentMaximumBasalRatePerHour(date: Date, basalRates: BasalRateSchedule?) -> Double? {
+        guard let maximumBasalRatePerHour = maximumBasalRatePerHour else { return nil }
+        guard dosingEnabled, microbolusSettings.basalRateMultiplier > 0,
+            let currentBasalRate = basalRates?.value(at: date)
+        else { return maximumBasalRatePerHour }
+
+        return min(maximumBasalRatePerHour, currentBasalRate * microbolusSettings.basalRateMultiplier)
+    }
 }
 
 extension LoopSettings: RawRepresentable {
@@ -190,6 +214,16 @@ extension LoopSettings: RawRepresentable {
 
         if let dosingEnabled = rawValue["dosingEnabled"] as? Bool {
             self.dosingEnabled = dosingEnabled
+        }
+
+        if let microbolusSettingsRaw = rawValue["microbolusSettings"] as? Microbolus.Settings.RawValue,
+            let microbolusSettings = Microbolus.Settings(rawValue: microbolusSettingsRaw) {
+            self.microbolusSettings = microbolusSettings
+        }
+
+        if let freeAPSSettingsRaw = rawValue["freeAPSSettings"] as? FreeAPSSettings.RawValue,
+            let freeAPSSettings = FreeAPSSettings(rawValue: freeAPSSettingsRaw) {
+            self.freeAPSSettings = freeAPSSettings
         }
 
         if let glucoseRangeScheduleRawValue = rawValue["glucoseTargetRangeSchedule"] as? GlucoseRangeSchedule.RawValue {
@@ -235,7 +269,9 @@ extension LoopSettings: RawRepresentable {
         var raw: RawValue = [
             "version": LoopSettings.version,
             "dosingEnabled": dosingEnabled,
-            "overridePresets": overridePresets.map { $0.rawValue }
+            "overridePresets": overridePresets.map { $0.rawValue },
+            "microbolusSettings": microbolusSettings.rawValue,
+            "freeAPSSettings": freeAPSSettings.rawValue
         ]
 
         raw["glucoseTargetRangeSchedule"] = glucoseTargetRangeSchedule?.rawValue
